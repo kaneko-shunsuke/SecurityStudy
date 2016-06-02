@@ -78,6 +78,11 @@
 					<button type="submit" id="login" name="login" value="login" class="float">Login</button>
 			 	</form>
 
+				<form action="register.php" method="POST">
+					<ul>
+						<li><a href="phpinfo.php">Register Your Account</a></li>
+					</ul>
+			 	</form>
 			</div>
 		</div>
 	</body>
