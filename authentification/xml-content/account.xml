@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<account>
+ <user id="1">
+  <name>user1</name>
+  <password>password1</password>
+ </user>
+ <user id="2">
+  <name>user2</name>
+  <password>password2</password>
+ </user>
+ <user id="3">
+  <name>user3</name>
+  <password>password3</password>
+ </user>
+ <user id="4">
+  <name>user4</name>
+  <password>password4</password>
+  <test>test4</test>
+ </user>
+</account>

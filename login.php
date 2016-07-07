@@ -9,7 +9,8 @@
 
 		if( $id != '' && $password != ''){
 			echo "Start login-logic and get MySQL Connection.";
-			$mysqli = new mysqli('localhost', 'root', 'password', 'websecdb');
+			//$mysqli = new mysqli('localhost', 'root', 'password', 'websecdb');
+			$mysqli = new mysqli('localhost', 'ubuntu', 'ubuntu', 'websec');
 			if ($mysqli->connect_error) {
 				echo $mysqli->connect_error;
 				exit();
@@ -18,7 +19,7 @@
 			}
 
 			echo "Success to getConnection! and Start to get LoginAccount Data";
-			$sql = "SELECT id, password FROM user_accounts WHERE id = '$id' AND password = '$password' ";
+			$sql = "SELECT id, password FROM user_account WHERE id = '$id' AND password = '$password' ";
 			//$sql = "SELECT id, password FROM user_accounts WHERE id=? AND password=?";
 			//if ($stmt = $mysqli->prepare($sql)) {
 			//	$stmt->bind_param("is", $id, $password);
@@ -60,6 +61,7 @@
 				<h2>Web Application Security Study</h2>
 
 				<form action="login.php" method="POST">
+				<!--<form action="./authentification/auth_ldap.php">-->
 
 					<div class="input-group input-group-lg">
 						<span class="input-group-addon">
