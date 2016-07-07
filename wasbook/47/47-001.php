@@ -1,7 +1,7 @@
 <?php
   $url = @$_GET['url'];
   if (! isset($url)) {
-     $url = 'http://example.jp/47/47-003.php';
+     $url = 'http://example.jp/SecurityStudy/wasbook/47/47-003.php';
   }
 ?>
 <html>

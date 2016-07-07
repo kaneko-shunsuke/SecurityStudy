@@ -14,8 +14,18 @@
 	  header("Location: logout.php");
 	  exit;
 	}
+	echo "ようこそ" . $_GET['id'] . "さん";
 
-	//echo "ようこそ" . $_SESSION["id"] . "さん";
+	$contentId = @$_GET['contentId'];
+	$contentUrl = "./phpinfo.php";
+	if($contentId==1){
+		$contentUrl = "./phpinfo2.php";
+	}
+
+
+	echo "contentId=" . $contentId;
+	echo "contentUrl=" . $contentUrl;
+
 ?>
 
 
@@ -26,13 +36,20 @@
 			Web Application Security Study
 		</div>
 		<ul id="main-menu">
-			<li><a href="./wasbook/index.html">MyPage</a></li>
+			<li><a href="./main.php?contentId=1" value="1" id="main-menu-1">MyPage</a></li>
 			<li><a href="logout.php">Diary</a></li>
 			<li><a href="logout.php">Option</a></li>		
 			<li><a href="./wasbook/index.html">WasBook</a></li>
 			<li><a href="logout.php">Logout</a></li>
 		</ul>
-<p><iframe src="./phpinfo.php" id="main-contents">代替内容</iframe></p>
+		<p>
+			<!--
+			<iframe src="./phpinfo.php" id="main-contents">代替内容</iframe>
+			-->
+			<iframe src="<?php echo htmlspecialchars($contentUrl, ENT_COMPAT, 'UTF-8') ?>" 
+					id="main-contents">代替内容</iframe>
+
+		</p>
 	</div>
 	</body>
 </html>

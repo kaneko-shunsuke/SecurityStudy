@@ -236,6 +236,13 @@ background:#99cccc;
   text-decoration:none;
   display:block;
   background:#96A9A9;
+
+  /* ここからグラデーション */
+  background-image: -moz-linear-gradient(top, #BACECE 0%, #9BADAD 50%, #96A9A9 50%, #9BADAD 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #BACECE), color-stop(0.50, #9BADAD), color-stop(0.50, #96A9A9), color-stop(1, #9BADAD));
+
+
+
 }
 
 #main-menu li a:hover {

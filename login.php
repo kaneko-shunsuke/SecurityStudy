@@ -80,7 +80,7 @@
 
 				<form action="register.php" method="POST">
 					<ul>
-						<li><a href="phpinfo.php">Register Your Account</a></li>
+						<li><a href="register.php">Register Your Account</a></li>
 					</ul>
 			 	</form>
 			</div>
