@@ -3,8 +3,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Contents</title>
 </head>
-<body style="margin: 8px 16px; background-color: lightgray;";>
-<div style="background-color: white; padding: 8px 16px;">
+<body>
 Contents
 <ul>
 <li><a href="./31/">3.1 HTTPとセッション管理</a></li>
@@ -27,7 +26,5 @@ Contents
 <li><a href="./74/">7 携帯電話向けWebアプリケーションの脆弱性対策</a></li>
 </ul>
 <a href="phpinfo.php">phpinfo</a>
-</div>
 </body>
 </html>
-
