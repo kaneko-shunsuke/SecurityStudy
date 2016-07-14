@@ -12,8 +12,8 @@
 
 		if( $id != '' && $password != ''){
 			// ログイン認証処理
-			//$mysqli = new mysqli('localhost', 'root', 'password', 'websecdb');
-			$mysqli = new mysqli('localhost', 'ubuntu', 'ubuntu', 'websec');
+			$mysqli = new mysqli('localhost', 'root', 'password', 'websecdb');
+			//$mysqli = new mysqli('localhost', 'ubuntu', 'ubuntu', 'websec');
 			if ($mysqli->connect_error) {
 				echo $mysqli->connect_error;
 				exit();
@@ -24,7 +24,7 @@
 			/** ログイン認証の回避 [SQLInjection脆弱性] **/
 			echo "Success to getConnection! and Start to get LoginAccount Data";
 			// NOT Use BIND-Structure
-			$sql = "SELECT id, password FROM user_account WHERE id = '$id' AND password = '$password' ";
+			$sql = "SELECT id, password FROM user_accounts WHERE id = '$id' AND password = '$password' ";
 			// Use BIND-Structure 
 			//$sql = "SELECT id, password FROM user_accounts WHERE id=? AND password=?"; 
 			//if ($stmt = $mysqli->prepare($sql)) {
