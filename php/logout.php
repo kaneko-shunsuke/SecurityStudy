@@ -2,10 +2,12 @@
 	session_start();
 	header('Content-Type: text/html; charset=UTF-8');
 
+	$contextRoot = 'http://172.16.193.77/SecurityStudy/';
+
 	if (isset($_SESSION["id"])) {
-		$errorMessage = "ログアウトしました。"; //"Logged out.";
+		$errorMessage = "Logged out.";
 	}else{
-		$errorMessage = "セッションタイムアウトしました。"; //"Session was timed out.";
+		$errorMessage = "Session was timed out.";
 	}
 
 	// セッション変数のクリア
@@ -40,10 +42,10 @@
 		<meta name="description" content="A test site for web application security assessment by MBSD" />
 		<meta name="author" content="MBSD" />
 
-		<link rel="stylesheet" type="text/css" href="../css/normalize.css" />
-		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
-		<link rel="stylesheet" type="text/css" href="../css/component.css" />
-		<script src="../js/modernizr.custom.js"></script>
+		<link rel="stylesheet" type="text/css" href="<?php echo $contextRoot; ?>css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo $contextRoot; ?>css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo $contextRoot; ?>css/component.css" />
+		<script src="<?php echo $contextRoot; ?>js/modernizr.custom.js"></script>
 	</head>
 
 	<body>

@@ -3,6 +3,8 @@
 
 	session_start();
 
+	$contextRoot = 'http://172.16.193.77/SecurityStudy/';
+
 	// ログイン状態のチェック
 	if (!isset($_SESSION["id"])) {
 	  header("Location: ./logout.php");
@@ -35,10 +37,10 @@
 		<meta name="description" content="A test site for web application security assessment by MBSD" />
 		<meta name="author" content="MBSD" />
 
-		<link rel="stylesheet" type="text/css" href="../css/normalize.css" />
-		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
-		<link rel="stylesheet" type="text/css" href="../css/component.css" />
-		<script src="../js/modernizr.custom.js"></script>
+		<link rel="stylesheet" type="text/css" href="<?php echo $contextRoot; ?>css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo $contextRoot; ?>css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo $contextRoot; ?>css/component.css" />
+		<script src="<?php echo $contextRoot; ?>js/modernizr.custom.js"></script>
 	</head>
 	<body>
 		<div class="container">
@@ -112,8 +114,8 @@
 
 		</div>
 
-		<script src="../js/classie.js"></script>
-		<script src="../js/gnmenu.js"></script>
+		<script src="<?php echo $contextRoot; ?>js/classie.js"></script>
+		<script src="<?php echo $contextRoot; ?>js/gnmenu.js"></script>
 		<script>
 			new gnMenu( document.getElementById( 'gn-menu' ) );
 		</script>

@@ -3,6 +3,8 @@
 	session_start();
 	header('Content-Type: text/html; charset=UTF-8');
 
+	$contextRoot = 'http://172.16.193.77/SecurityStudy/';
+
 	$id       = @$_POST['id'];
 	$password = @$_POST['password'];
 
@@ -12,8 +14,8 @@
 
 		if( $id != '' && $password != ''){
 			// ログイン認証処理
-			$mysqli = new mysqli('localhost', 'root', 'password', 'websecdb');
-			//$mysqli = new mysqli('localhost', 'ubuntu', 'ubuntu', 'websec');
+			//$mysqli = new mysqli('localhost', 'root', 'password', 'websecdb');
+			$mysqli = new mysqli('localhost', 'ubuntu', 'ubuntu', 'websec');
 			if ($mysqli->connect_error) {
 				echo $mysqli->connect_error;
 				exit();
@@ -24,7 +26,7 @@
 			/** ログイン認証の回避 [SQLInjection脆弱性] **/
 			echo "Success to getConnection! and Start to get LoginAccount Data";
 			// NOT Use BIND-Structure
-			$sql = "SELECT id, password FROM user_accounts WHERE id = '$id' AND password = '$password' ";
+			$sql = "SELECT id, password FROM user_account WHERE id = '$id' AND password = '$password' ";
 			// Use BIND-Structure 
 			//$sql = "SELECT id, password FROM user_accounts WHERE id=? AND password=?"; 
 			//if ($stmt = $mysqli->prepare($sql)) {
@@ -52,6 +54,9 @@
 			$result->close();
 		}
 	}
+
+	
+
 ?>
 
 <html lang="en" class="no-js">
@@ -63,14 +68,15 @@
 		<meta name="description" content="A test site for web application security assessment by MBSD" />
 		<meta name="author" content="MBSD" />
 
-		<link rel="stylesheet" type="text/css" href="../css/normalize.css" />
-		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
-		<link rel="stylesheet" type="text/css" href="../css/component.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo $contextRoot; ?>css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo $contextRoot; ?>css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo $contextRoot; ?>css/component.css" />
 
-		<script src="../js/modernizr.custom.js"></script>
+		<script src="<?php echo $contextRoot; ?>js/modernizr.custom.js"></script>
 		<script type="text/javascript">
 			/** Javascriptによるリダイレクト処理 [OpenRedirect脆弱性] **/
 			var isLogin = <?php echo $isLogin; ?>;
+
 			if(isLogin){
 				// リダイレクト処理へ
 				var redirectURL = location.search.substring(1);
@@ -81,7 +87,7 @@
 					location.href = url;
 				}else{
 					// 通常のログイン（メインページヘ）
-					location.href = "./main.php";
+					location.href = "<?php echo $contextRoot; ?>php/main.php";
 				}
 			}
 		</script>
@@ -130,7 +136,7 @@
 					 	</form>
 
 						<!-- アカウント登録画面へのリンク -->
-						<a href="./register.php">Register Your Account</a>
+						<a href="<?php echo $contextRoot; ?>php/register.php">Register Your Account</a>
 
 					</div>
 				</div>
