@@ -1,0 +1,12 @@
+
+.main-container{
+	padding: 8px 24px;
+}
+
+.block-message{
+	border-left-color: grey;
+}
+
+.block-message-alert{
+	border-left-color: red;
+}

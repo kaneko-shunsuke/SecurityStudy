@@ -2,8 +2,8 @@
 <?php
 
 	session_start();
-
-	$contextRoot = 'http://172.16.193.77/SecurityStudy/';
+	include("./conf/context-url.php");
+	//$contextRoot = 'http://172.16.193.77/SecurityStudy/';
 
 	// ログイン状態のチェック
 	if (!isset($_SESSION["id"])) {
@@ -13,13 +13,15 @@
 
 	// コンテンツ表示内容をセットする
 	$contentId = @$_GET['contentId'];
-	$contentUrl = "";
 	if($contentId=='phpinfo'){
 		$contentUrl = "./util/phpinfo.php";
 	}else if($contentId=='article'){
 		$contentUrl = "./article/main.php";
 	}else if($contentId=='wasbook'){
 		$contentUrl = "../wasbook";
+	}else{
+		$contentId = "mypage";
+		$contentUrl = "./mypage/mypage.php";
 	}
 
 	// ログイン時のメール送信

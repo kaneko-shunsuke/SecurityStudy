@@ -2,7 +2,8 @@
 	session_start();
 	header('Content-Type: text/html; charset=UTF-8');
 
-	$contextRoot = 'http://172.16.193.77/SecurityStudy/';
+	//$contextRoot = 'http://172.16.193.77/SecurityStudy/';
+	include("./conf/context-url.php");
 
 	if (isset($_SESSION["id"])) {
 		$errorMessage = "Logged out.";
@@ -65,8 +66,7 @@
 				<h1>
 					<span>
 						<?php echo $errorMessage; ?><br><br>
-						<!-- <a href="./login.php">Return to Login Page</a> -->
-						<a href="./login.php">ログインページに戻る</a>
+						<a href="./login.php">Return to Login Page</a>
 					</span>
 				</h1>
 			</header>
