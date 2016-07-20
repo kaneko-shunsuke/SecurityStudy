@@ -19,6 +19,8 @@
 		$contentUrl = "./article/main.php";
 	}else if($contentId=='wasbook'){
 		$contentUrl = "../wasbook";
+	}else if($contentId=='shopping_car'){
+		$contentUrl = "./shopping/car.php";
 	}else{
 		$contentId = "mypage";
 		$contentUrl = "./mypage/mypage.php";
@@ -58,12 +60,21 @@
 									<input placeholder="Search" type="search" class="gn-search">
 									<a class="gn-icon gn-icon-search"><span>Search</span></a>
 								</li>
+
+								<li>
+									<a class="gn-icon gn-icon-archive">Shopping</a>
+									<ul class="gn-submenu">
+										<li><a class="gn-icon gn-icon-article" href="./main.php?contentId=shopping_car">Car</a></li>
+
+									</ul>
+								</li>
+
 								<li>
 									<a class="gn-icon gn-icon-download">Downloads</a>
 									<ul class="gn-submenu">
 										<li><a class="gn-icon gn-icon-illustrator">Vector Illustrations</a></li>
 										<li><a class="gn-icon gn-icon-photoshop">Photoshop files</a></li>
-										<li><a class="gn-icon gn-icon-photoshop" href="./main.php?contentId=wasbook">WAS-BOOK files</a></li>
+										<li><a class="gn-icon gn-icon-article" href="./main.php?contentId=wasbook">WAS-BOOK files</a></li>
 									</ul>
 								</li>
 								<li>

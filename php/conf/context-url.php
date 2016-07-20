@@ -1,3 +1,3 @@
 <?php
-	$contextRoot = 'http://192.168.30.142/SecurityStudy/';
+	$contextRoot = 'http://192.168.30.145/SecurityStudy/';
 ?>
