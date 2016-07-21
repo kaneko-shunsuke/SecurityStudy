@@ -137,7 +137,12 @@
 }
 
 .gn-submenu li a {
-		color: #c1c9d1
+		/*color: #c1c9d1*/
+	padding-left: 16px;
+}
+.gn-lastmenu li a {
+		/*color: #c1c9d1*/
+	padding-left: 48px;
 }
 
 input.gn-search {

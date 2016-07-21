@@ -6,7 +6,6 @@
 	header("X-XSS-Protection: 0");
 
 	include("./conf/context-url.php");
-	//$contextRoot = 'http://172.16.193.77/SecurityStudy/';
 
 	// ログイン状態のチェック
 	if (!isset($_SESSION["id"])) {
@@ -18,6 +17,8 @@
 	$contentId = @$_GET['contentId'];
 	if($contentId=='phpinfo'){
 		$contentUrl = "./util/phpinfo.php";
+	}else if($contentId=='mypage'){
+		$contentUrl = "./mypage/mypage.php";
 	}else if($contentId=='article'){
 		$contentUrl = "./article/main.php";
 	}else if($contentId=='wasbook'){
@@ -25,18 +26,12 @@
 	}else if($contentId=='shopping_car'){
 		$contentUrl = "./shopping/car.php";
 	}else if($contentId=='shopping_book'){
-		$sizetype = @$_GET['sizetype'];
-		$contentUrl = "./shopping/book.php";
-		if($sizetype != ''){
-			$contentUrl = $contentUrl . '?sizetype=' . $sizetype;
+		if(isset($_GET['sizetype'])){
+			$contentUrl = $contentUrl . "?sizetype=" . $_GET['sizetype'];
 		}
-	}else if($contentId=='shopping_book_large'){
-		$contentUrl = "./shopping/book.php?type=1";
-	}else if($contentId=='shopping_book_middle'){
-		$contentUrl = "./shopping/book.php?type=2";
 	}else{
-		$contentId = "mypage";
-		$contentUrl = "./mypage/mypage.php";
+		// デフォルトはひとまず、ショッピングページにしておく
+		$contentUrl = "./shopping/book.php";
 	}
 
 	// ログイン時のメール送信
@@ -77,28 +72,42 @@
 								<li>
 									<a class="gn-icon gn-icon-archive">Shopping</a>
 									<ul class="gn-submenu">
+										<!--
 										<li><a class="gn-icon gn-icon-article" href="./main.php?contentId=shopping_car">Car</a></li>
+										-->
 										<li><a class="gn-icon gn-icon-article" href="./main.php?contentId=shopping_book">Book</a></li>
-<li><a class="gn-icon gn-icon-article" href="./main.php?contentId=shopping_book&sizetype=1">大型本</a></li>
-<li><a class="gn-icon gn-icon-article" href="./main.php?contentId=shopping_book&sizetype=2">単行本</a></li>
+										<ul class="gn-lastmenu">
+											<li><a class="gn-icon" href="./main.php?contentId=shopping_book&sizetype=1">− 大型本</a></li>
+											<li><a class="gn-icon" href="./main.php?contentId=shopping_book&sizetype=2">− 単行本</a></li>
+										</ul>
+									</ul>
+								</li>
+
+								<li>
+									<a class="gn-icon gn-icon-cog">Settings</a>
+									<ul class="gn-submenu">
+										<li><a class="gn-icon gn-icon-article" href="./main.php?contentId=mypage">MyPage</a></li>
 									</ul>
 								</li>
 
 								<li>
 									<a class="gn-icon gn-icon-download">Downloads</a>
 									<ul class="gn-submenu">
+										<!-- 
 										<li><a class="gn-icon gn-icon-illustrator">Vector Illustrations</a></li>
 										<li><a class="gn-icon gn-icon-photoshop">Photoshop files</a></li>
+										-->
 										<li><a class="gn-icon gn-icon-article" href="./main.php?contentId=wasbook">WAS-BOOK files</a></li>
 									</ul>
 								</li>
+
 								<li>
-									<a class="gn-icon gn-icon-cog">Settings</a>
+									<a class="gn-icon gn-icon-help">Help</a>
 									<ul class="gn-submenu">
 										<li><a class="gn-icon gn-icon-article" href="./main.php?contentId=phpinfo">PHP Info</a></li>
 									</ul>
 								</li>
-								<li><a class="gn-icon gn-icon-help">Help</a></li>
+								<!-- 
 								<li>
 									<a class="gn-icon gn-icon-archive">Archives</a>
 									<ul class="gn-submenu">
@@ -107,8 +116,9 @@
 										<li><a class="gn-icon gn-icon-videos">Videos</a></li>
 									</ul>
 								</li>
+								-->
 							</ul>
-						</div><!-- /gn-scroller -->
+						</div>
 					</nav>
 				</li>
 				<li><a href="http://www.mbsd.jp/">MBSD WEBSITE</a></li>
@@ -130,13 +140,11 @@
 
 			<!-- メインコンテンツ -->
 			<?php
-				if($contentId!=""){
-					echo '<iframe width="100%" height="800px" src="' .$contentUrl. '" id="main-contents"></iframe>';
-				}
+				echo '<iframe width="100%" height="800px" src="' .$contentUrl. '" id="main-contents"></iframe>';
 			?>
 			<!--
 			<iframe id="main-contents" width="100%" height="400px" 
-					src="<?php echo htmlspecialchars($contentUrl, ENT_COMPAT, 'UTF-8') ?>" >
+				src="<?php echo htmlspecialchars($contentUrl, ENT_COMPAT, 'UTF-8') ?>" >
 			</iframe>
 			-->
 

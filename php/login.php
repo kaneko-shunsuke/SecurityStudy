@@ -3,20 +3,18 @@
 	session_start();
 	header('Content-Type: text/html; charset=UTF-8');
 
-	//$contextRoot = 'http://172.16.193.77/SecurityStudy/';
 	include("./conf/context-url.php");
 
 	$id       = @$_POST['id'];
 	$password = @$_POST['password'];
-
-	$isLogin = 'false';
+	$isLogin  = 'false';
 
 	if(isset($_POST['login'])){
 
 		if( $id != '' && $password != ''){
 			// ログイン認証処理
-			//$mysqli = new mysqli('localhost', 'root', 'password', 'websecdb');
-			$mysqli = new mysqli('localhost', 'ubuntu', 'ubuntu', 'websec');
+			$mysqli = new mysqli('localhost', 'root', 'password', 'websecdb');
+			//$mysqli = new mysqli('localhost', 'ubuntu', 'ubuntu', 'websec');
 			if ($mysqli->connect_error) {
 				echo $mysqli->connect_error;
 				exit();
@@ -27,7 +25,7 @@
 			/** ログイン認証の回避 [SQLInjection脆弱性] **/
 			echo "Success to getConnection! and Start to get LoginAccount Data";
 			// NOT Use BIND-Structure
-			$sql = "SELECT id, password FROM user_account WHERE id = '$id' AND password = '$password' ";
+			$sql = "SELECT id, password FROM user_accounts WHERE id = '$id' AND password = '$password' ";
 			// Use BIND-Structure 
 			//$sql = "SELECT id, password FROM user_accounts WHERE id=? AND password=?"; 
 			//if ($stmt = $mysqli->prepare($sql)) {
@@ -77,7 +75,6 @@
 		<script type="text/javascript">
 			/** Javascriptによるリダイレクト処理 [OpenRedirect脆弱性] **/
 			var isLogin = <?php echo $isLogin; ?>;
-
 			if(isLogin){
 				// リダイレクト処理へ
 				var redirectURL = location.search.substring(1);
@@ -148,7 +145,11 @@
 
 		<!-- 工藤さんのキーロガー入り口 [XSS脆弱性] -->
 		<script>
-			var mode = <?php echo $_GET['mode'] ?>;
+			<?php 
+				if(isset($_GET['mode'])){
+					echo 'var mode = '.$_GET['mode'];
+				}
+			?>
 		</script>
 
 	</body>
