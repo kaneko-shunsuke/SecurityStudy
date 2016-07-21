@@ -2,6 +2,9 @@
 <?php
 
 	session_start();
+	header('Content-Type: text/html; charset=UTF-8');
+	header("X-XSS-Protection: 0");
+
 	include("./conf/context-url.php");
 	//$contextRoot = 'http://172.16.193.77/SecurityStudy/';
 
@@ -21,6 +24,16 @@
 		$contentUrl = "../wasbook";
 	}else if($contentId=='shopping_car'){
 		$contentUrl = "./shopping/car.php";
+	}else if($contentId=='shopping_book'){
+		$sizetype = @$_GET['sizetype'];
+		$contentUrl = "./shopping/book.php";
+		if($sizetype != ''){
+			$contentUrl = $contentUrl . '?sizetype=' . $sizetype;
+		}
+	}else if($contentId=='shopping_book_large'){
+		$contentUrl = "./shopping/book.php?type=1";
+	}else if($contentId=='shopping_book_middle'){
+		$contentUrl = "./shopping/book.php?type=2";
 	}else{
 		$contentId = "mypage";
 		$contentUrl = "./mypage/mypage.php";
@@ -65,7 +78,9 @@
 									<a class="gn-icon gn-icon-archive">Shopping</a>
 									<ul class="gn-submenu">
 										<li><a class="gn-icon gn-icon-article" href="./main.php?contentId=shopping_car">Car</a></li>
-
+										<li><a class="gn-icon gn-icon-article" href="./main.php?contentId=shopping_book">Book</a></li>
+<li><a class="gn-icon gn-icon-article" href="./main.php?contentId=shopping_book&sizetype=1">大型本</a></li>
+<li><a class="gn-icon gn-icon-article" href="./main.php?contentId=shopping_book&sizetype=2">単行本</a></li>
 									</ul>
 								</li>
 

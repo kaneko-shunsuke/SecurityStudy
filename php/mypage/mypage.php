@@ -32,7 +32,7 @@ include("../conf/context-url.php");
 				</div>
 				<div class="row" style="padding:20px 0px;">
 					<div class="col-sm-3" style="">
-						<img border="0" src="<?php echo $contextRoot; ?>image/noimage.jpg" height="200" alt="NO IMAGE">
+						<img border="0" src="<?php echo $contextRoot; ?>image/mypage/micky.jpg" height="200" alt="NO IMAGE">
 					</div>
 					<div class="col-sm-9" style="">
 						  <div class="form-group">
