@@ -2,6 +2,7 @@
 <?php
 	session_start();
 	header('Content-Type: text/html; charset=UTF-8');
+	header("X-XSS-Protection: 0");
 
 	include("./conf/context-url.php");
 
@@ -12,9 +13,10 @@
 	if(isset($_POST['login'])){
 
 		if( $id != '' && $password != ''){
+
 			// ログイン認証処理
-			$mysqli = new mysqli('localhost', 'root', 'password', 'websecdb');
-			//$mysqli = new mysqli('localhost', 'ubuntu', 'ubuntu', 'websec');
+			//$mysqli = new mysqli('localhost', 'root', 'password', 'websecdb');
+			$mysqli = new mysqli('localhost', 'ubuntu', 'ubuntu', 'websec');
 			if ($mysqli->connect_error) {
 				echo $mysqli->connect_error;
 				exit();
@@ -22,10 +24,10 @@
 				$mysqli->set_charset("utf8");
 			}
 
-			/** ログイン認証の回避 [SQLInjection脆弱性] **/
+			/** ログイン認証の回避 [SQLInjection脆弱性1] **/
 			echo "Success to getConnection! and Start to get LoginAccount Data";
 			// NOT Use BIND-Structure
-			$sql = "SELECT id, password FROM user_accounts WHERE id = '$id' AND password = '$password' ";
+			$sql = "SELECT id, password FROM user_account WHERE id = '$id' AND password = '$password' ";
 			// Use BIND-Structure 
 			//$sql = "SELECT id, password FROM user_accounts WHERE id=? AND password=?"; 
 			//if ($stmt = $mysqli->prepare($sql)) {
@@ -143,11 +145,11 @@
  
 		</div>
 
-		<!-- 工藤さんのキーロガー入り口 [XSS脆弱性] -->
+		<!-- [パラメータ値の書出し XSS脆弱性1] -->
 		<script>
 			<?php 
 				if(isset($_GET['mode'])){
-					echo 'var mode = '.$_GET['mode'];
+					echo $_GET['mode'];
 				}
 			?>
 		</script>

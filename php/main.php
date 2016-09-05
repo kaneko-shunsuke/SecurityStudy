@@ -19,6 +19,8 @@
 		$contentUrl = "./util/phpinfo.php";
 	}else if($contentId=='mypage'){
 		$contentUrl = "./mypage/mypage.php";
+	}else if($contentId=='verify'){
+		$contentUrl = "./verify/verify.php";
 	}else if($contentId=='article'){
 		$contentUrl = "./article/main.php";
 	}else if($contentId=='wasbook'){
@@ -26,6 +28,7 @@
 	}else if($contentId=='shopping_car'){
 		$contentUrl = "./shopping/car.php";
 	}else if($contentId=='shopping_book'){
+		$contentUrl = "./shopping/book.php";
 		if(isset($_GET['sizetype'])){
 			$contentUrl = $contentUrl . "?sizetype=" . $_GET['sizetype'];
 		}
@@ -75,7 +78,8 @@
 										<!--
 										<li><a class="gn-icon gn-icon-article" href="./main.php?contentId=shopping_car">Car</a></li>
 										-->
-										<li><a class="gn-icon gn-icon-article" href="./main.php?contentId=shopping_book">Book</a></li>
+										<li><a class="gn-icon gn-icon-article" href="./main.php?contentId=shopping_book">Book</a></li>										
+										<!-- [秘密情報の漏洩 SQLInjection脆弱性2] -->
 										<ul class="gn-lastmenu">
 											<li><a class="gn-icon" href="./main.php?contentId=shopping_book&sizetype=1">− 大型本</a></li>
 											<li><a class="gn-icon" href="./main.php?contentId=shopping_book&sizetype=2">− 単行本</a></li>
@@ -87,6 +91,7 @@
 									<a class="gn-icon gn-icon-cog">Settings</a>
 									<ul class="gn-submenu">
 										<li><a class="gn-icon gn-icon-article" href="./main.php?contentId=mypage">MyPage</a></li>
+										<li><a class="gn-icon gn-icon-article" href="./main.php?contentId=verify">Verify</a></li>
 									</ul>
 								</li>
 
@@ -133,7 +138,7 @@
 				</h1>	
 			</header> 
 
-			<!-- ページ改ざんの入り口 [XSS脆弱性] -->
+			<!-- [パラメータ値の書出し XSS脆弱性2] -->
 			<script>
 				document.write("<?php echo $_GET['keyword']; ?>");
 			</script>
